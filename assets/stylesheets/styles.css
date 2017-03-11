@@ -47,24 +47,51 @@ table {
 	border-spacing: 0;
 }
 
+/*
+  ========================================
+  Grid
+  ========================================
+*/
 
-
-/*body {
-  background-color: #A7D2CB
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-h1 {
-  color: #C98474
+.container {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 960px;
 }
 
-h2 {
-  color: #C98474
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+
+header {
+	padding-bottom: 22px;
 }
 
-h3 {
-  color: #C98474
+h2, h3, p {
+	margin-bottom: 22px;
 }
 
-p {
-  color: #874C62
-}*/
+footer {
+	padding-top: 22px;
+}
+
+#coming_soon {
+	padding-bottom: 22px;
+}
+
+.crop img {
+  object-fit: cover;
+  width:230px;
+  height:230px;
+}
