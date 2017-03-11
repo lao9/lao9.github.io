@@ -62,10 +62,12 @@ table {
 }
 
 .container {
+	display: table;
   margin: 0 auto;
   padding-left: 30px;
   padding-right: 30px;
   width: 760px;
+	height: auto;
 }
 
 /*
@@ -114,14 +116,19 @@ footer {
   width: 30%;
 }
 
-#blog_left_nav {
-	float: left;
-	width: 25%
+#blog_right_content {
+	display: table-cell;
+	width: 60%;
+	height: auto;
+	padding-left: 10px
 }
 
-#blog_right_content {
-	float: left;
-	width: 60%
+#blog_left_nav {
+	display: table-cell;
+	width: 25%;
+	height: auto;
+	background-color: blue;
+	padding: 10px
 }
 
 #rosie img {
