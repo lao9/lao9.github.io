@@ -127,7 +127,7 @@ footer {
 	display: table-cell;
 	width: 25%;
 	height: auto;
-	background-color: blue;
+	background-color: #9A9EAB;
 	padding: 10px
 }
 
@@ -136,4 +136,56 @@ footer {
   margin: auto;
 }
 
-hr { width:100%; height:1px; background: #fff }
+hr { width:100%; height:1px; background: #434E3C }
+
+
+h1 {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+h2, h3 {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+	color: #893667
+}
+
+footer {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+	color: #893667
+}
+
+small {
+	font-size: 14px;
+}
+
+body {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+	background-color: #F5F4EB;
+	color: #434E3C
+}
+
+a {
+	color: #893667
+}
+
+#hey {
+	text-align: right;
+}
