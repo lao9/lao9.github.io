@@ -32,7 +32,7 @@ body {
 	line-height: 1;
 }
 ol, ul {
-	list-style: none;
+	list-style-position: inside;
 }
 blockquote, q {
 	quotes: none;
@@ -157,6 +157,10 @@ h2, h3 {
 	color: #893667
 }
 
+h3 {
+	font-size: 16px;
+}
+
 footer {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	font-size: 18px;
@@ -188,4 +192,18 @@ a {
 
 #hey {
 	text-align: right;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
 }
