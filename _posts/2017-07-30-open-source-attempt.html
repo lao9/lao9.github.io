@@ -4,4 +4,105 @@ title: "First Attempt at Open Source"
 date: 2017-07-30
 ---
 
-Well. Finally got around to putting this old website together. Neat thing about it - powered by [Jekyll](http://jekyllrb.com) and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.
+<p>I've been interested in contributing to open source for a while now, and I finally got the chance during mod 4 of Turing to dip my toes in!</p>
+
+<p>First I put perused some open source resources and put together <a href="https://github.com/turingschool/ruby-submissions/blob/master/1701-b/4module/open_source_proposals/lauren_oliveri.md">a few ideas</a> for a possible open source project to contribute to. Which was all nice and well-intentioned, but I ended up not contributing to any of these projects, but still will keep them in mind for the next time! I first started poking around with issue.io, thinking I could maybe improve its user experience because I had some issues navigating it at first. Then while doing so, I actually found a bug that seemed doable via a project called "Bookanook" regarding a duplicate user menu for admin users only. Bookanook is an application that helps libraries reserve spaces in their building.</p>
+
+<h3>Step 1: Setup Environment</h3>
+
+<p>Once semi-committed to this bug, I tried following their setup instructions on their <a href="https://github.com/berkmancenter/bookanook">README</a>.</p>
+
+<p>Their first instruction is to clone down the repo, which I followed without really thinking and forking first, which was a silly error that I had to skirt around later. Then I had to use <code class="inlinecode">rvm gemset</code> to start setting up my project's gems, which I had never done before. I had to look up <a href="https://rvm.io/gemsets/basics">what a gemset even was</a>. I now know that it allows the installation of gems to be only associated with a single Ruby installation, though if anyone has strong opinions on why someone should or shouldn't use a gemset, I'd appreciate some insight because then things start going downhill...</p>
+
+<p>Next, I tried to bundle using <code class="inlinecode">bundle install</code> as specified in the setup and bundle wasn't an available command... so I used <code class="inlinecode">gem install bundle</code> and <strong>then</strong> tried <code class="inlinecode">bundle install</code> and it seemed to do the trick (though it did take over 5 mins to install everything). However, once bundled, it gave me an error that I didn't have an up-to-date version of a particular dependency, so I ran <code class="inlinecode">bundle update</code>, which seemed to resolve that for now.</p>
+
+<p>Then the most <em>vague</em> instructions of all: <code class="inlinecode">Make necessary changes (postgresql username and password) in config/database.yml</code>. At first I just tried to setup my database without changing anything because I hadn't encountered setting up postgres database like this yet... and of course that didn't work. So after some googling I remembered that back when I first install postgres, I setup a username so I just added it to the config/database.yml file and it appeared to work!</p>
+
+<p>The last hiccup I encountered was rails would crash when I tried to spin up the server using <code class="inlinecode">rails s</code>, but not when I used <code class="inlinecode">bundle exec rails server</code>. That's not an issue I'm familiar with... but was thankful to have found a workaround.</p>
+
+<p>Many of my classmates also expressed that their open source project setups went about the same. Some couldn't even get past the setup for projects they wanted to work on, so that's something I will keep in mind as I continue to contribute or even start an open source project.</p>
+
+<p>Needless to say, one of my first contributions to the project was adding my notes in about the project setup! I included some resources for setting up a postgres database in rails, where to actually acquire google auth keys, and some troubleshooting steps in the setup that I used.</p>
+
+<p>I also included some tidbits about getting tests to run, which I detailed a little bit in the next section.</p>
+
+<h3>Step 2: Try Running Test Suite</h3>
+
+<p>Since nothing is easy, when I tried running the test suite with `rspec`, I ran into another issue:</p>
+
+<pre>
+  <code>
+    Web Console is activated in the test environment, which is
+    usually a mistake. To ensure it's only activated in development
+    mode, move it to the development group of your Gemfile:
+
+        gem 'web-console', group: :development
+
+    If you still want to run it the test environment (and know
+    what you are doing), put this in your Rails application
+    configuration:
+
+        config.web_console.development_only = false
+  </code>
+</pre>
+
+<p>So, I tried to move that gem in the Gemfile to development and re-bundle, but was still getting errors. I also didn't feel confident that I "knew what I was doing", so I didn't try adding that config line to the app config.</p>
+
+<p>Instead I found this helpful <a href="https://stackoverflow.com/questions/35438251/web-console-is-activated-in-the-test-environment-when-testing-app">StackOverflow post</a> about the same issue, and following the following instructions:</p>
+
+<p>Remove the following gem from your Gemfile:</p>
+
+<pre>
+  <code>
+    gem 'web-console', '~> 2.0'
+  </code>
+</pre>
+
+<p>Then in your terminal, run the following:</p>
+
+<pre>
+  <code>
+    $ gem install bundler
+    $ bundle install --without production
+  </code>
+</pre>
+
+<p>That did the trick!</p>
+
+<h3>Step 3: Report an Reproduce a Bug</h3>
+
+<p>Finally after being able to navigate the application and poking around the project, I felt that this project is sort of ... a mess. I wasn't very impressed with the product, but I wasn't here to really criticize or make the whole thing 100% better, just squash a small bug. If they ask me to do some more work, I can do that and feel comfortable now navigating it!</p>
+
+<p>As described in my bug report on the <a href="https://github.com/berkmancenter/bookanook/issues/9">issue</a>, I used one of the admin accounts in the seed file to login. I then navigated to the location index and location show page and could confirm that there were two "user pills".</p>
+
+<img src="/assets/open_source_v1/bug_1.png" alt="bug1" style="width: 450px;"/>
+
+<p>The top pill appears to be the one that is embedded in the layout, and the most functional/relevant:</p>
+
+<img src="/assets/open_source_v1/bug_3.png" alt="bug2" style="width: 200px;"/>
+
+<p>The bottom bill appears to be added as an admin, but it doesn't actually serve any other functionality, other than an additional logout option:</p>
+
+<img src="/assets/open_source_v1/bug_2.png" alt="bug2" style="width: 200px;"/>
+
+<p>Once I was able to reproduce, I wrote up the issue and then later added that I tried fixing it with a PR to delete the duplicative lines that added the second random user-pill.</p>
+
+<h3>Step 4: Submit PR for a Fix</h3>
+
+<p>After spending some time inspecting the page, I was able to hunt down the offending lines of text adding the unnecessary user pills to the location index and show pages.</p>
+
+<p>I simply removed them, and then observed the result:</p>
+
+<p>Location Index:</p>
+<img src="/assets/open_source_v1/fix_2.png" alt="fix_2" style="width: 450px;"/>
+
+<p>Location Show:</p>
+<img src="/assets/open_source_v1/fix_1.png" alt="fix_1" style="width: 450px;"/>
+
+<p>Looked good!</p>
+
+<p>Then I tried running the tests again to confirm and tests were still passing, so I felt comfortable making a <a href="https://github.com/berkmancenter/bookanook/pull/223">pull request</a>!</p>
+
+<h3>Reflections</h3>
+
+<p>Even though this is a super small fix, I am so happy I spent the time working on it. I learned a lot about how to find open source projects, how to setup someone else's project, how to reproduce a bug, and make a fix and documentation contribution to someone else's project! It was a really great experience and I'm really excited / nervous to see if they merge my changes.</p>

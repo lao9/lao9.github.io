@@ -200,6 +200,11 @@ pre code {
   display: block;
 }
 
+.inlinecode {
+	background-color: #eee;
+	font-family: courier;
+}
+
 em {
 	font-style: italic;
 }
