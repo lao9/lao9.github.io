@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    {% include stylesheets.html %}
+  </head>
+		<body>
+      <header class="container">
+        <h1 class="head_spacer">Lauren Oliveri</h1>
+          <nav class="head_spacer">
+            <a href="/index.html">home</a> |
+            <a href="/projects.html">projects</a> |
+            <a href="/travel.html">travel</a> |
+            <a href="/blog.html">blog</a>
+          </nav>
+        <hr/>
+      </header>
+			<div class="container">
+
+			{{ content }}
+
+			</div>
+			<footer class="container">
+        <small>&copy; Lauren Oliveri</small>
+        <nav id="hey">
+          <a href="mailto:lauren.oliveri.9@gmail.com">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </a> <a href="https://github.com/lao9" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+          </a> <a href="https://www.linkedin.com/in/lauren-oliveri-36713225" target="_blank">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          </a>
+        </nav>
+			</footer>
+		</body>
+	</html>
