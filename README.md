@@ -1,0 +1,5 @@
+#### Developing locally
+
+```
+jekyll serve
+```
